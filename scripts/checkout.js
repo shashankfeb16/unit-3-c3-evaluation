@@ -2,7 +2,7 @@
 // If wallet amount is insufficient show alert "Insufficient Balance!";
 // Else show "Booking successfull!" and adjust the wallet amount in real time
 
-var wallet = JSON.parse(localStorage.getItem("amount"))
+var wallet = JSON.parse(localStorage.getItem("amount")) || 0
 document.getElementById("wallet").innerText = wallet;
 
 
@@ -29,7 +29,11 @@ function submit(){
         alert("Insufficient Balance !")
     }
     else{
-        alert("Booking Successful!")
+        alert("Booking Successful!");
     }
-
+    wallet = wallet-total;
+    localStorage.setItem("amount",JSON.stringify(wallet));
+    window.location.reload();
+   
 }
+
